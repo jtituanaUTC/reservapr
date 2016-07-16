@@ -1,0 +1,80 @@
+{
+  "v": "4.0",
+  "policies" : {
+    "create" : "perUser"
+  },
+  "workspace": {
+    "defaultEnv": "php",
+    "environments": [
+      {
+        "name": "php",
+        "machineConfigs": [
+          {
+            "limits": {
+              "ram": 1000
+            },
+            "name": "ws-machine",
+            "type": "docker",
+            "source": {
+              "location": "http://beta.codenvy.com/api/recipe/recipehfmfy5re4n6l2a9u/script",
+              "type": "recipe"
+            },
+            "dev": true
+          }
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "links": [],
+        "name": "web-php-simple",
+        "attributes": {
+          "language": [
+            "java"
+          ]
+        },
+        "type": "java",
+        "source": {
+          "location": "https://github.com/che-samples/web-php-simple.git",
+          "type": "git",
+          "parameters": {}
+        },
+        "modules": [],
+        "path": "/web-php-simple",
+        "problems": [],
+        "mixins": [
+          "git"
+        ]
+      }
+    ],
+    "name": "php",
+    "attributes": {},
+    "commands": [
+      {
+        "commandLine": "sudo service apache2 start && sudo tail -f /var/log/apache2/access.log -f /var/log/apache2/error.log",
+        "name": "web-php-simple: start apache",
+        "attributes": {
+          "previewUrl": "http://${server.port.80}/${current.project.relpath}"
+        },
+        "type": "custom"
+      },
+      {
+        "commandLine": "sudo service apache2 stop",
+        "name": "web-php-simple: stop apache",
+        "attributes": {
+          "previewUrl": ""
+        },
+        "type": "custom"
+      },
+      {
+        "commandLine": "sudo service apache2 restart",
+        "name": "web-php-simple: restart apache",
+        "attributes": {
+          "previewUrl": "http://${server.port.80}/${current.project.relpath}"
+        },
+        "type": "custom"
+      }
+    ],
+    "links": []
+  }
+}
